@@ -32,15 +32,31 @@ export class GraphqlService {
     ]
   }
 
+  /**
+   * Purpose: create product
+   * @param createGraphqlInput 
+   * @returns 
+   */
   create(createGraphqlInput: CreateGraphqlInput) {
     this.productData.push(createGraphqlInput);
     return "Product created Successfully";
   }
 
+  /**
+   * Purpose: Find all product
+   * @returns 
+   */
   findAll() {
     return this.productData;
   }
 
+  /**
+   * Purpose: Apply filter on product
+   * @param filter 
+   * @param sorting 
+   * @param pagination 
+   * @returns 
+   */
   findQuery(filter:FilteringInput, sorting:SortingInput, pagination:PaginationInput) {
 
     let skip = pagination.skip;
@@ -61,6 +77,11 @@ export class GraphqlService {
     return queryData;
   }
 
+  /**
+   * Purpose: Find product by price
+   * @param price 
+   * @returns 
+   */
   findOne(price: number) {
     let data=[];
     this.productData.find((res) => {
@@ -71,11 +92,22 @@ export class GraphqlService {
     return data;
   }
 
+  /**
+   * Purpose: update product by ID
+   * @param id 
+   * @param createGraphqlInput 
+   * @returns 
+   */
   update(id: number, createGraphqlInput: CreateGraphqlInput) {
 
     return "Product Updated Successfully";
   }
 
+  /**
+   * Purpose: remove product by ID
+   * @param id 
+   * @returns 
+   */
   remove(id: number) {
     let index = this.productData.findIndex(res => {res.price==id});
     this.productData.splice(index,1);
@@ -94,6 +126,26 @@ export class GraphqlService {
     return "Post Created Successfully";
   }
 
+  /**
+   * Puspose: Update post by ID
+   * @param id 
+   * @param postGraphqlInput 
+   * @returns 
+   */
+  async updatePost(id:string,postGraphqlInput: PostGraphqlInput){
+    let Post = await this.PostModel.findByIdAndUpdate({_id:id},postGraphqlInput);
+    return "Post Updated Successfully";
+  }
+
+  /**
+   * Purpose: Delete post by ID
+   * @param id 
+   * @returns 
+   */
+  async deletePost(id:string){
+    let Post = await this.PostModel.findByIdAndDelete({_id:id});
+    return "Post deleted Successfully";
+  }
   /**
    * Purpose: Apply filter query
    * @param filter 

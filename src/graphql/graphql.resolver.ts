@@ -89,6 +89,29 @@ export class GraphqlResolver {
   }
 
   /**
+   * Purpose: Update post
+   * @param id 
+   * @param postGraphqlInput 
+   * @returns 
+   */
+  @Mutation(returns => String, { name: 'updatePostById', nullable: true })
+  updatePost(@Args({name:'updateId',type: () => String }) id: string,
+  @Args('postGraphqlInput') postGraphqlInput: PostGraphqlInput): Promise<string> {
+    return this.graphqlService.updatePost(id,postGraphqlInput);
+  }
+  
+  /**
+   * Purpose: Delete post
+   * @param id 
+   * @param postGraphqlInput 
+   * @returns 
+   */
+  @Mutation(returns => String, { name: 'deletePostById', nullable: true })
+  deletePost(@Args({name:'updateId',type: () => String }) id: string): Promise<string> {
+    return this.graphqlService.deletePost(id);
+  }
+
+  /**
    * Purpose: Apply filter, sorting and pagination by post.
    * @param filter 
    * @param sorting 

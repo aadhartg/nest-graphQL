@@ -16,8 +16,10 @@ input FilteringInput {
 type Mutation {
   createPost(creatPost: PostGraphqlInput!): String
   createProduct(createGraphqlInput: CreateGraphqlInput!): String!
+  deletePostById(updateId: String!): String
   deleteProductById(deleteId: Int!): String
   filterpost(filter: FilteringInput!, pagination: PaginationInput!, sorting: SortingInput!): [PostGraphqlOutput!]!
+  updatePostById(postGraphqlInput: PostGraphqlInput!, updateId: String!): String
   updateProductById(createGraphqlInput: CreateGraphqlInput!, updateId: Int!): String
 }
 

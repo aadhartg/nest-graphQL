@@ -38,8 +38,10 @@ export interface SortingInput {
 export interface IMutation {
     createPost(creatPost: PostGraphqlInput): Nullable<string> | Promise<Nullable<string>>;
     createProduct(createGraphqlInput: CreateGraphqlInput): string | Promise<string>;
+    deletePostById(updateId: string): Nullable<string> | Promise<Nullable<string>>;
     deleteProductById(deleteId: number): Nullable<string> | Promise<Nullable<string>>;
     filterpost(filter: FilteringInput, pagination: PaginationInput, sorting: SortingInput): PostGraphqlOutput[] | Promise<PostGraphqlOutput[]>;
+    updatePostById(postGraphqlInput: PostGraphqlInput, updateId: string): Nullable<string> | Promise<Nullable<string>>;
     updateProductById(createGraphqlInput: CreateGraphqlInput, updateId: number): Nullable<string> | Promise<Nullable<string>>;
 }
 
